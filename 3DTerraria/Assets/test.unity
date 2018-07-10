@@ -358,10 +358,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f977647d7b95cbb48962964957dc3e18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  block: {fileID: 0}
-  width: 10
-  height: 2
-  depth: 10
 --- !u!1 &1147999823
 GameObject:
   m_ObjectHideFlags: 0
@@ -390,6 +386,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cubeMaterial: {fileID: 2100000, guid: bf87f49259ab0d64a82e455dfb664daa, type: 2}
+  bType: 2
 --- !u!4 &1147999825
 Transform:
   m_ObjectHideFlags: 0

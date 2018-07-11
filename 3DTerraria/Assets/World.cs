@@ -5,9 +5,9 @@ using UnityEngine;
 public class World : MonoBehaviour {
 
     public Material textureAtlas;
-    public static int columnHeight = 5;
+    public static int columnHeight = 3;
     public static int chunkSize = 16;
-    public static int worldSize = 5;
+    public static int worldSize = 10;
     public static Dictionary<string, Chunk> chunks;
 
     public static string BuildChunkName(Vector3 v){

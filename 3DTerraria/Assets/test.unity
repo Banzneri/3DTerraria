@@ -382,11 +382,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1147999823}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e5cf4574158c664fbbe18c1f3448fc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 0a05427949483a945a3ee6c63836f171, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cubeMaterial: {fileID: 2100000, guid: bf87f49259ab0d64a82e455dfb664daa, type: 2}
-  bType: 2
+  textureAtlas: {fileID: 2100000, guid: bf87f49259ab0d64a82e455dfb664daa, type: 2}
 --- !u!4 &1147999825
 Transform:
   m_ObjectHideFlags: 0

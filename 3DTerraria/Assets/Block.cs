@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class Block {
 
-	enum Cubeside {BOTTOM, TOP, LEFT, RIGHT, FRONT, BACK};
+    enum Cubeside {BOTTOM, TOP, LEFT, RIGHT, FRONT, BACK};
     public enum BlockType {GRASS, DIRT, STONE, AIR};
 
 
-	public bool isSolid;
+    public bool isSolid;
+    Chunk owner;
     Material cubeMaterial;
     BlockType bType;
-	Vector3 position;
-	GameObject parent;
+    Vector3 position;
+    GameObject parent;
 
     Vector2[,] blockUVs = {
         /*GRASS TOP*/       {new Vector2(0.125f, 0.375f ), new Vector2(0.1875f, 0.375f),
@@ -24,19 +25,19 @@ public class Block {
         /*STONE*/           {new Vector2(0, 0.875f), new Vector2(0.0625f, 0.875f),
                                 new Vector2(0, 0.9375f), new Vector2(0.0625f, 0.9375f )},
     };
-	
-	public Block(BlockType b, Vector3 pos, GameObject p, Material m){
-		bType = b;
-		parent = p;
-		position = pos;
-		cubeMaterial = m;
+    
+    public Block(BlockType b, Vector3 pos, GameObject p, Chunk o){
+        bType = b;
+        parent = p;
+        owner = o;
+        position = pos;
         if(bType == BlockType.AIR)
             isSolid = false;
         else
             isSolid = true;
-	}
+    }
 
-	void CreateQuad(Cubeside side)
+    void CreateQuad(Cubeside side)
     {
         Mesh mesh = new Mesh();
         mesh.name = "ScriptedMesh"+ side.ToString();
@@ -132,7 +133,7 @@ public class Block {
         mesh.RecalculateBounds();
 
         GameObject quad = new GameObject("Quad");
-		quad.transform.position = position;
+        quad.transform.position = position;
         quad.transform.parent = parent.transform;
         
         MeshFilter meshFilter = (MeshFilter) quad.AddComponent(typeof(MeshFilter));
@@ -141,30 +142,30 @@ public class Block {
         //renderer.material = cubeMaterial;
     }
 
-	public bool HasSolidNeighbour(int x, int y, int z){
-		Block[,,] chunks = parent.GetComponent<Chunk>().chunkData;
-		try{
-			return chunks[x,y,z].isSolid;
-		}catch(System.IndexOutOfRangeException ex){}
+    public bool HasSolidNeighbour(int x, int y, int z){
+        Block[,,] chunks = owner.chunkData;
+        try{
+            return chunks[x,y,z].isSolid;
+        }catch(System.IndexOutOfRangeException ex){}
 
-		return false;
-	}
+        return false;
+    }
 
-	public void Draw(){
+    public void Draw(){
         if(bType == BlockType.AIR) return;
 
-		if(!HasSolidNeighbour((int)position.x, (int)position.y, (int)position.z +1))
-			CreateQuad(Cubeside.FRONT);
-        if(!HasSolidNeighbour((int)position.x, (int)position.y, (int)position.z -1))	
-			CreateQuad(Cubeside.BACK);
+        if(!HasSolidNeighbour((int)position.x, (int)position.y, (int)position.z +1))
+            CreateQuad(Cubeside.FRONT);
+        if(!HasSolidNeighbour((int)position.x, (int)position.y, (int)position.z -1))    
+            CreateQuad(Cubeside.BACK);
         if(!HasSolidNeighbour((int)position.x, (int)position.y +1, (int)position.z))
-			CreateQuad(Cubeside.TOP);
-		if(!HasSolidNeighbour((int)position.x, (int)position.y -1, (int)position.z))
-        	CreateQuad(Cubeside.BOTTOM);
-		if(!HasSolidNeighbour((int)position.x -1, (int)position.y, (int)position.z))
-        	CreateQuad(Cubeside.LEFT);
-		if(!HasSolidNeighbour((int)position.x +1, (int)position.y, (int)position.z))
-        	CreateQuad(Cubeside.RIGHT);
-	}
+            CreateQuad(Cubeside.TOP);
+        if(!HasSolidNeighbour((int)position.x, (int)position.y -1, (int)position.z))
+            CreateQuad(Cubeside.BOTTOM);
+        if(!HasSolidNeighbour((int)position.x -1, (int)position.y, (int)position.z))
+            CreateQuad(Cubeside.LEFT);
+        if(!HasSolidNeighbour((int)position.x +1, (int)position.y, (int)position.z))
+            CreateQuad(Cubeside.RIGHT);
+    }
 
 }

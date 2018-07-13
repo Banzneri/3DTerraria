@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Utils{
 
-	static int maxHeight = 25;
-	static float smooth = 0.02f;
+	static int maxHeight = 100;
+	static float smooth = 0.01f;
 	static int octaves = 4;
 	static float persistence = 0.5f;
 

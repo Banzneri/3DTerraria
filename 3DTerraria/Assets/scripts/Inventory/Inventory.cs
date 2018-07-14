@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class Inventory {
     private List<Item> items;
+    [SerializeField]
     private float weightCapasity;
     
     public Inventory(float weightCapasity)

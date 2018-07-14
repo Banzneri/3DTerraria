@@ -6,16 +6,13 @@ public abstract class Weapon : Item {
     [SerializeField]
     private float damage;
 
-    public float Damage
-    {
-        get
-        {
+    public float Damage {
+        get {
             return damage;
         }
 
-        set
-        {
-            if(value > 0)
+        set {
+            if (value > 0)
                 damage = value;
         }
     }

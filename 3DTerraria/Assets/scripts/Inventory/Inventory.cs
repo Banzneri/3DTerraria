@@ -4,6 +4,7 @@ using UnityEngine;
 
 [System.Serializable]
 public class Inventory {
+    private InventoyPool inventoyPool = InventoyPool.Instance;
     [SerializeField]
     private List<Item> items;
     [SerializeField]

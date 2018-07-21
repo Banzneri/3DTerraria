@@ -4,6 +4,8 @@ using UnityEngine;
 
 [System.Serializable]
 public class Inventory {
+
+    private ObjectPool objectPool = ObjectPool.Instance;
     [SerializeField]
     private List<Item> items;
     [SerializeField]
@@ -20,7 +22,7 @@ public class Inventory {
         if((this.CurrentWeight() + item.Weight) <= weightCapasity)
         {
             items.Add(item);
-            item.gameObject.SetActive(false);
+            objectPool.Add(item.gameObject);
 
         } else
         {

@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 
-    public Inventory inventory = new Inventory(10);
+    public Inventory inventory;
+
+    private void Start() {
+        inventory = new Inventory(10);
+    }
 
     private void Update() {
         if (Input.GetMouseButtonDown(0)) {

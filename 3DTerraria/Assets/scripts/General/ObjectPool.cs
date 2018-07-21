@@ -12,6 +12,9 @@ public class ObjectPool : Singleton<ObjectPool> {
         gameObjects.Add(gameObject);
     }
 
+    // TODO: If the object pool doesn't have the item it should be instantiated
+    // GameObjects should never be destroyed by using the Destroy method. Instead
+    // of destroy, they should be saved to object pool for possible later use.
     public GameObject GetObject(GameObject gameObject) {
         int index = gameObjects.IndexOf(gameObject);
         return gameObjects[index];

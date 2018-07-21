@@ -17,7 +17,7 @@ public abstract class Item : MonoBehaviour, IInteractable {
         }
     }
 
-    public void Interact<Player>(Player player) {
-        Debug.Log(player);
+    public void Interact(Player player) {
+        player.inventory.AddToInventoty(this);
     }
 }

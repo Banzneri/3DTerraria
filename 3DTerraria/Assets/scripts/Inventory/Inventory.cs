@@ -4,6 +4,7 @@ using UnityEngine;
 
 [System.Serializable]
 public class Inventory {
+    [SerializeField]
     private List<Item> items;
     [SerializeField]
     private float weightCapasity;
@@ -19,6 +20,8 @@ public class Inventory {
         if((this.CurrentWeight() + item.Weight) <= weightCapasity)
         {
             items.Add(item);
+            item.gameObject.SetActive(false);
+
         } else
         {
             Debug.Log("Inventory is full!");

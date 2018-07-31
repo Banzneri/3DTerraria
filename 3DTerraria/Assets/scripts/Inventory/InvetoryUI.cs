@@ -5,12 +5,16 @@ using UnityEngine;
 public class InvetoryUI: MonoBehaviour {
 
     [SerializeField]
+    private ItemRowUI itemRowUI;
+    [SerializeField]
     private Camera UICamera;
     private Camera mainCamera;
     private Player player;
 
     private void Start() {
         mainCamera = Camera.main;
+
+        // Should probably create some sort of game manager
         player = (Player) FindObjectOfType(typeof(Player));
     }
 
@@ -36,6 +40,9 @@ public class InvetoryUI: MonoBehaviour {
             }
             
             foreach(System.Type key in dictionary.Keys) {
+                ItemRowUI newRow = Instantiate(itemRowUI);
+                newRow.SetItemName(key.ToString());
+                newRow.SetItemCount(dictionary[key]);
                 Debug.Log(key.ToString() + ", " + dictionary[key]);
             }
         }

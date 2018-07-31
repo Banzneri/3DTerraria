@@ -25,11 +25,18 @@ public class InvetoryUI: MonoBehaviour {
         UICamera.enabled = !UICamera.enabled;
 
         if(UICamera.enabled) {
-
-            HashSet<Dictionary<string, int>> set = new HashSet<Dictionary<string, int>>();
+            Dictionary<System.Type, int> dictionary = new Dictionary<System.Type, int>();
 
             foreach(Item item in player.inventory.Items) {
-                Debug.Log(item.GetType().ToString());
+                if(dictionary.ContainsKey(item.GetType())) {
+                    dictionary[item.GetType()] += 1;
+                } else {
+                    dictionary.Add(item.GetType(), 1);
+                }
+            }
+            
+            foreach(System.Type key in dictionary.Keys) {
+                Debug.Log(key.ToString() + ", " + dictionary[key]);
             }
         }
     }
